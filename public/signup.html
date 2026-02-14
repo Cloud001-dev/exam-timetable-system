@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Signup</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="header">
+<div class="header-inner">
+<img src="images/tsu-logo.png">
+<h1>
+FACULTY OF COMPUTING AND ARTIFICIAL INTELLIGENCE <br>
+DEPARTMENT OF COMPUTER SCIENCE & <br>
+DEPARTMENT OF COMPUTER SCIENCE EDUCATION
+</h1>
+</div>
+</div>
+
+<div class="main">
+
+<div class="card">
+<h2>Create Account</h2>
+
+<form id="signupForm">
+
+<input type="text" id="name" placeholder="Full Name" required>
+<input type="text" id="matric" placeholder="Matric Number" required>
+
+<select id="department">
+<option>Computer Science</option>
+<option>Computer Science Education</option>
+</select>
+
+<select id="level">
+<option>100</option>
+<option>200</option>
+<option>300</option>
+<option>400</option>
+</select>
+
+<input type="password" id="password" placeholder="Password" required>
+
+<button class="btn">Register</button>
+
+</form>
+
+</div>
+
+</div>
+
+<script>
+document.getElementById("signupForm").onsubmit = async (e)=>{
+
+e.preventDefault();
+
+const res = await fetch("/signup",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+name:name.value,
+matric:matric.value,
+department:department.value,
+level:level.value,
+password:password.value
+})
+});
+
+const data = await res.json();
+
+if(data.success){
+alert("Registration successful");
+window.location="login.html";
+}else{
+alert(data.message);
+}
+
+}
+</script>
+
+</body>
+</html>

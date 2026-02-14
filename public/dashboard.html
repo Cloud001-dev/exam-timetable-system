@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dashboard</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="header">
+<div class="header-inner">
+<img src="images/tsu-logo.png">
+<h1>
+FACULTY OF COMPUTING AND ARTIFICIAL INTELLIGENCE <br>
+DEPARTMENT OF COMPUTER SCIENCE & <br>
+DEPARTMENT OF COMPUTER SCIENCE EDUCATION
+</h1>
+</div>
+</div>
+
+<div class="layout">
+
+<div class="sidebar">
+<a href="#">My Profile</a>
+<a href="#">My Timetable</a>
+<a href="index.html">Logout</a>
+</div>
+
+<div class="main">
+
+<div class="card">
+
+<h2>Student Profile</h2>
+
+<div class="profile-box">
+
+<img src="images/profile.png">
+
+<div>
+<p><b>Name:</b> <span id="name"></span></p>
+<p><b>Matric:</b> <span id="matric"></span></p>
+<p><b>Department:</b> <span id="dept"></span></p>
+<p><b>Level:</b> <span id="level"></span></p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+async function loadUser(){
+
+const matric = localStorage.getItem("matric");
+
+const res = await fetch("/user/"+matric);
+const user = await res.json();
+
+document.getElementById("name").innerText = user.name;
+document.getElementById("matric").innerText = user.matric;
+document.getElementById("dept").innerText = user.department;
+document.getElementById("level").innerText = user.level;
+
+}
+
+loadUser();
+
+</script>
+
+</body>
+</html>
